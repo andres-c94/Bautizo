@@ -1,0 +1,105 @@
+<!--
+  DOCUMENTACIÓN: https://developers.arcgis.com/javascript/latest/sample-code/widgets-featuretable/ 
+                 https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-FeatureTable.html
+-->
+
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>FeatureTable widget | Sample | ArcGIS API for JavaScript 4.20</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.20/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.20/"></script>
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        color:black;
+      }
+      .container {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+
+
+    <script>
+      require([
+        "esri/layers/FeatureLayer",
+        "esri/widgets/FeatureTable"
+      ], function(FeatureLayer, FeatureTable) {
+
+        var featureLayer = new FeatureLayer({
+          url: "https://services.arcgis.com/8DAUcrpQcpyLMznu/arcgis/rest/services/survey123_fa623ed57bea4237a9689903f136955b/FeatureServer/0",
+          title: "survey (ID:0)"
+        });
+
+     
+        const table = new FeatureTable({
+          layer: featureLayer,
+          visibleElements: {selectionColumn: false},
+          editingEnabled: false,
+
+          fieldConfigs: [
+            {
+              name: "nombres_de_los_adultos",
+              label: "Nombre de los adultos", 
+              //visible: false
+            },
+            {
+              name: "cuantos_adultos_van_a_asistir",
+              label: "Numero de adultos", 
+              //visible: false
+            },
+            {
+              name: "nombre_de_los_ni_os",
+              label: "Nombre de los niños",
+              //direction: "asc"
+            },
+            {
+              name: "cuantos_ni_os",
+              label: "Numero de niños",
+              //direction: "asc"
+            }
+            
+           
+          ],
+          container: document.getElementById("tableDiv")
+        });
+      });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </head>
+  <body>
+    <div class="container">
+      <div id="tableDiv"></div>
+    </div>
+  </body>
+</html>
